@@ -1,0 +1,50 @@
+{
+  "name": "nodekb",
+  "version": "1.0.0",
+  "description": "Simple site tutor app",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myhong1990/tutor_site.git"
+  },
+  "author": "My Hong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/myhong1990/tutor_site/issues"
+  },
+  "homepage": "https://github.com/myhong1990/tutor_site#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.17.2",
+    "connect-flash": "^0.1.1",
+    "express": "^4.15.3",
+    "express-messages": "^1.0.1",
+    "express-session": "^1.15.3",
+    "express-validator": "^3.2.0",
+    "less": "^2.7.2",
+    "mongoose": "^4.10.2",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "pug": "^2.0.0-rc.4",
+    "ruby": "^0.6.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-less": "^3.3.2",
+    "gulp-notify": "^3.0.0",
+    "gulp-path": "^3.0.3",
+    "gulp-pug": "^3.3.0",
+    "gulp-pug-job": "0.0.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-ruby-sass": "^2.1.1",
+    "gulp-uglify": "^3.0.0",
+    "gulp-uglify-es": "^0.1.3",
+    "jshint": "^2.9.5",
+    "pump": "^1.0.2"
+  }
+}

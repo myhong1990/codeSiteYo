@@ -1,0 +1,56 @@
+extends common/layout
+
+block content
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width')
+    meta(name='description', content='Affordable and professional web design')
+    meta(name='keywords', content='web design, affordable web design, professional web design')
+    meta(name='author', content='My Hong')
+    title Coding Tutorials | Welcome
+    link(rel='stylesheet', href='./css/style.css')
+  body
+    header
+      .container
+        #branding
+          h1
+            span.highlight Acme
+            |  Web Design
+        nav
+          ul
+            li.current
+              a(href='index.html') Home
+            li
+              a(href='about.html') About
+            li
+              a(href='services.html') Services
+    section#showcase
+      .container
+        h1 Affordable Professional Web Design
+        p
+          | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu luctus ipsum, rhoncus semper magna. Nulla nec magna sit amet sem interdum condimentum.
+    section#newsletter
+      .container
+        h1 Subscribe To Our Newsletter
+        form
+          input(type='email', placeholder='Enter Email...')
+          button.button_1(type='submit') Subscribe
+    section#boxes
+      .container
+        .box
+          img(src='./img/logo_html.png')
+          h3 HTML5 Markup
+          p
+            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mi augue, viverra sit amet ultricies
+        .box
+          img(src='./img/logo_css.png')
+          h3 CSS3 Styling
+          p
+            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mi augue, viverra sit amet ultricies
+        .box
+          img(src='./img/logo_brush.png')
+          h3 Graphic Design
+          p
+            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mi augue, viverra sit amet ultricies
+    footer
+      p Acme Web Deisgn, Copyright © 2017
