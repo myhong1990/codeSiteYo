@@ -5,6 +5,9 @@ jshint = require('gulp-jshint'), // checks any JavaScript file in our directory 
 concat = require('gulp-concat'),
 uglify = require('gulp-uglify'),
 uglify_es = require('gulp-uglify-es').default; // this uglify to work for es6 syntax
+sourcemaps = require('gulp-sourcemaps'),
+autoprefixer = require('gulp-autoprefixer'),
+LessAutoprefix = require('less-plugin-autoprefix'),
 rename = require('gulp-rename'),
 notify = require('gulp-notify'),
 gulpPath = require('gulp-path'), // this plugin used to organize files' path
@@ -39,36 +42,39 @@ function errorHandler(error) {
 // });
 
 // interpret pug into html
-gulp.task('views', function buildHTML() {
-    return gulp.src(['src/main/dev/views/*.pug'])
-    .pipe(notify({ message: 'Gathering & Compiling .pug files' }))
-    .pipe(pug())
-    //   .pipe(concat('index.html'))
-    .pipe(gulp.dest('src/main/dist/html'))
-    .pipe(notify({ message: 'Successfully Compiled' }));
-});
+// gulp.task('views', function buildHTML() {
+//     return gulp.src(['src/main/dev/views/*.pug'])
+//     .pipe(notify({ message: 'Gathering & Compiling .pug files' }))
+//     .pipe(pug())
+//     //   .pipe(concat('index.html'))
+//     .pipe(gulp.dest('src/main/dist/html'))
+//     .pipe(notify({ message: 'Successfully Compiled' }));
+// });
 
 // checks any JavaScript file in our directory and makes sure there are no errors in our code.
 gulp.task('lint', function (cb) {
     pump([
-        gulp.src('src/main/dev/scripts/controllers/**/*.js'), // looks for all .js files in this repository
+        gulp.src('src/main/dev/scripts/**/*.js'), // looks for all .js files in this repository
         notify({ message: 'Start checking script files syntax errors'}),
         jshint(),
-        jshint.reporter('default'),
+        jshint.reporter('jshint-stylish'),
         notify({ message: 'PASSED Successfully'})
     ],
     cb
   );
 });
 // task to concatenate and minify all javascript files
-gulp.task('scripts', function (cb) {
+// run scripts task after lint task is done.
+gulp.task('scripts',['lint'], function (cb) {
     pump([
-        gulp.src('src/main/dev/scripts/controllers/**/*.js'), // take all file with extension .js
+        gulp.src('src/main/dev/scripts/**/*.js'), // take all file with extension .js
+        sourcemaps.init(),
+        autoprefixer(),
         concat('index.js'), // concatenate sources .js file into main.js
-        gulp.dest('src/main/dist/controllers'), // OPTIONAL store the concatenated version in specified path
         rename({suffix: '.min'}), // rename file to index.min.js
         uglify_es(), //minify the file content
-        gulp.dest('src/dest/js') // tell gulp where to put concatenated file
+        sourcemaps.write('.'),
+        gulp.dest('src/main/dist/scripts') // tell gulp where to put concatenated file
       ],
       cb
     );
@@ -88,13 +94,16 @@ gulp.task('sass', function() {
 /**
  * run task to interpret LESS into CSS
  */
+var autoprefix = new LessAutoprefix({ browsers: ['last 2 versions'] });
 gulp.task('less', function() {
-    // return gulp.src('src/**/*.less')
-    // .pipe(less({paths: [path.join(__dirname, 'css', 'includes')]}))
-    // .pipe(gulp.dest('src/styles/css'));
+    return gulp.src('./src/main/dev/styles/less/**/*.less')
+    .pipe(sourcemaps.init())
+    .pipe(less({
+        plugins: [autoprefix]
+      }))
+    .pipe(sourcemaps.write('./maps'))
+    .pipe(gulp.dest('./src/main/dist/styles'))
 });
-
-
 
 
 
@@ -106,4 +115,4 @@ gulp.task('watch', function() {
 
 
 gulp.task('test', ['watch']);
-gulp.task('default', ['views', 'lint', 'scripts']);
+gulp.task('default', ['scripts', 'less']);
