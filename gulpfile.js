@@ -15,9 +15,16 @@ pug = require('gulp-pug'),
 job = require('gulp-pug-job'),
 // error hanlder to print out specific errors
 pump = require('pump'), 
-path = require('path');
+path = require('path'),
+chalk = require('chalk');
 
 
+function errorHandler(error) {
+    if (typeof error== 'object' && error.message) {
+        error = error.message;
+    }
+    console.error(chalk.red('[gulp]') + chalk.red(error));
+}
 //Concatenate and minify JS files
 // gulp.task('scripts', function() {
 //     return gulp.src('src/main/scripts/controllers/*.js') // take all file with extension .js
@@ -33,18 +40,18 @@ path = require('path');
 
 // interpret pug into html
 gulp.task('views', function buildHTML() {
-    return gulp.src(['src/main/views/*.pug'])
+    return gulp.src(['src/main/dev/views/*.pug'])
     .pipe(notify({ message: 'Gathering & Compiling .pug files' }))
     .pipe(pug())
     //   .pipe(concat('index.html'))
-    .pipe(gulp.dest('src/dest/html'))
+    .pipe(gulp.dest('src/main/dist/html'))
     .pipe(notify({ message: 'Successfully Compiled' }));
 });
 
 // checks any JavaScript file in our directory and makes sure there are no errors in our code.
 gulp.task('lint', function (cb) {
     pump([
-        gulp.src('src/main/scripts/controllers/**/*.js'), // looks for all .js files in this repository
+        gulp.src('src/main/dev/scripts/controllers/**/*.js'), // looks for all .js files in this repository
         notify({ message: 'Start checking script files syntax errors'}),
         jshint(),
         jshint.reporter('default'),
@@ -56,9 +63,9 @@ gulp.task('lint', function (cb) {
 // task to concatenate and minify all javascript files
 gulp.task('scripts', function (cb) {
     pump([
-        gulp.src('src/main/scripts/controllers/**/*.js'), // take all file with extension .js
+        gulp.src('src/main/dev/scripts/controllers/**/*.js'), // take all file with extension .js
         concat('index.js'), // concatenate sources .js file into main.js
-        gulp.dest('src/main_dist/controllers'), // OPTIONAL store the concatenated version in specified path
+        gulp.dest('src/main/dist/controllers'), // OPTIONAL store the concatenated version in specified path
         rename({suffix: '.min'}), // rename file to index.min.js
         uglify_es(), //minify the file content
         gulp.dest('src/dest/js') // tell gulp where to put concatenated file
@@ -93,7 +100,7 @@ gulp.task('less', function() {
 
 // Watch Files For Changes
 gulp.task('watch', function() {
-    gulp.watch('src/main/controllers/*.js', ['lint', 'scripts']);
+    gulp.watch('src/main/dev/scripts/**/*.js', ['lint', 'scripts']);
     // gulp.watch('src/styles/less/*.less', ['less']);
 });
 
