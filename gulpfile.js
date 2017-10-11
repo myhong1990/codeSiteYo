@@ -1,18 +1,21 @@
 // include gulp
 var gulp = require('gulp'),
+// use to start server
+autoprefixer = require('gulp-autoprefixer'),
+nodemon = require('gulp-nodemon'),
 // include gulp plugins
 jshint = require('gulp-jshint'), // checks any JavaScript file in our directory and makes sure there are no errors in our code.
 concat = require('gulp-concat'),
 uglify = require('gulp-uglify'),
 uglify_es = require('gulp-uglify-es').default; // this uglify to work for es6 syntax
 sourcemaps = require('gulp-sourcemaps'),
-autoprefixer = require('gulp-autoprefixer'),
+livereload = require('gulp-livereload'),
 LessAutoprefix = require('less-plugin-autoprefix'),
 rename = require('gulp-rename'),
 notify = require('gulp-notify'),
 gulpPath = require('gulp-path'), // this plugin used to organize files' path
 // other third parties plugins
-sass = require('gulp-ruby-sass'), // preprocessor for CSS
+sass = require('gulp-ruby-sass'), // Sass preprocessor for CSS, Sass is ruby base
 less = require('gulp-less'),
 pug = require('gulp-pug'),
 job = require('gulp-pug-job'),
@@ -28,6 +31,16 @@ function errorHandler(error) {
     }
     console.error(chalk.red('[gulp]') + chalk.red(error));
 }
+
+
+// set task of sass reprocessing and auto vending prefixing
+gulp.task('sass', function () {
+    return sass('./dev/styles/sass/*.scss', {style: 'expanded'})
+    .pipe(autoprefixer('last 2 version'))
+    .pipe(gulp.dest('./dist/styles/'))
+    .pipe(livereload());
+});
+
 //Concatenate and minify JS files
 // gulp.task('scripts', function() {
 //     return gulp.src('src/main/scripts/controllers/*.js') // take all file with extension .js
@@ -42,23 +55,27 @@ function errorHandler(error) {
 // });
 
 // interpret pug into html
-// gulp.task('views', function buildHTML() {
-//     return gulp.src(['src/main/dev/views/*.pug'])
-//     .pipe(notify({ message: 'Gathering & Compiling .pug files' }))
-//     .pipe(pug())
-//     //   .pipe(concat('index.html'))
-//     .pipe(gulp.dest('src/main/dist/html'))
-//     .pipe(notify({ message: 'Successfully Compiled' }));
-// });
+gulp.task('views', function buildHTML() {
+    return gulp.src(['./src/main/dev/views/*.pug'])
+    .pipe(pug())
+    .pipe(concat('index.html'))
+    .pipe(gulp.dest('./src/main/dist/views'))
+    .pipe(livereload());
+});
+
+// create task to reload browser whenever an .pug files gets changed
+gulp.task('html', function () {
+    return gulp.src('./dev/views/*.pug')
+    .pipe(livereload());
+});
 
 // checks any JavaScript file in our directory and makes sure there are no errors in our code.
 gulp.task('lint', function (cb) {
     pump([
         gulp.src('src/main/dev/scripts/**/*.js'), // looks for all .js files in this repository
-        notify({ message: 'Start checking script files syntax errors'}),
-        jshint(),
+        jshint('.jshintrc'),
         jshint.reporter('jshint-stylish'),
-        notify({ message: 'PASSED Successfully'})
+        livereload()
     ],
     cb
   );
@@ -74,7 +91,8 @@ gulp.task('scripts',['lint'], function (cb) {
         rename({suffix: '.min'}), // rename file to index.min.js
         uglify_es(), //minify the file content
         sourcemaps.write('.'),
-        gulp.dest('src/main/dist/scripts') // tell gulp where to put concatenated file
+        gulp.dest('src/main/dist/scripts'), // tell gulp where to put concatenated file
+        livereload()
       ],
       cb
     );
@@ -96,7 +114,7 @@ gulp.task('sass', function() {
  */
 var autoprefix = new LessAutoprefix({ browsers: ['last 2 versions'] });
 gulp.task('less', function() {
-    return gulp.src('./src/main/dev/styles/less/**/*.less')
+    return gulp.src('./src/main/dev/styles/*.less')
     .pipe(sourcemaps.init())
     .pipe(less({
         plugins: [autoprefix]
@@ -109,10 +127,21 @@ gulp.task('less', function() {
 
 // Watch Files For Changes
 gulp.task('watch', function() {
+    livereload.listen();
     gulp.watch('src/main/dev/scripts/**/*.js', ['lint', 'scripts']);
-    // gulp.watch('src/styles/less/*.less', ['less']);
+    gulp.watch('src/main/dev/styles/*.scss', ['sass']);
+    // gulp.watch('src/main/dev/styles/*.less', ['less']);
+    gulp.watch('src/main/dev/views/*.pug', ['views']);
 });
 
 
-gulp.task('test', ['watch']);
-gulp.task('default', ['scripts', 'less']);
+gulp.task('server', function() {
+    nodemon({
+        'script': 'app.js',
+        'ignore': 'src/main/dev/scripts/*.js'
+    });
+});
+
+gulp.task('default', ['scripts', 'less', 'views']);
+gulp.task('serve', ['server', 'watch']);
+

@@ -1,29 +1,15 @@
 extends common/layout
 
+block append head
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width')
+  meta(name='description', content='Affordable and professional web design')
+  meta(name='keywords', content='web design, affordable web design, professional web design')
+  meta(name='author', content='My Hong')
+  title Coding Tutorials | Welcome
+  link(rel='stylesheet', href='./styles/index.css')
+
 block content
-  head
-    meta(charset='utf-8')
-    meta(name='viewport', content='width=device-width')
-    meta(name='description', content='Affordable and professional web design')
-    meta(name='keywords', content='web design, affordable web design, professional web design')
-    meta(name='author', content='My Hong')
-    title Coding Tutorials | Welcome
-    link(rel='stylesheet', href='./css/style.css')
-  body
-    header
-      .container
-        #branding
-          h1
-            span.highlight Acme
-            |  Web Design
-        nav
-          ul
-            li.current
-              a(href='index.html') Home
-            li
-              a(href='about.html') About
-            li
-              a(href='services.html') Services
     section#showcase
       .container
         h1 Affordable Professional Web Design
@@ -52,5 +38,3 @@ block content
           h3 Graphic Design
           p
             | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mi augue, viverra sit amet ultricies
-    footer
-      p Acme Web Deisgn, Copyright © 2017

@@ -1,0 +1,16 @@
+header
+    .container
+        #branding
+          h1
+            span.highlight CodingFun
+            |  SoftwareDepot
+        nav
+          ul
+            if user
+              li 
+                a(href='/users/logout') Logout 
+            else
+              li
+                a(href='/users/register') Register
+              li
+                a(href='/users/login') Login

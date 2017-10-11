@@ -33,11 +33,14 @@
   },
   "devDependencies": {
     "chalk": "^2.1.0",
+    "consolidate": "^0.14.5",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-jshint": "^2.0.4",
     "gulp-less": "^3.3.2",
+    "gulp-livereload": "^3.8.1",
+    "gulp-nodemon": "^2.2.1",
     "gulp-notify": "^3.0.0",
     "gulp-path": "^3.0.3",
     "gulp-pug": "^3.3.0",
@@ -50,6 +53,7 @@
     "jshint": "^2.9.5",
     "jshint-stylish": "^2.2.1",
     "less-plugin-autoprefix": "^1.5.1",
-    "pump": "^1.0.2"
+    "pump": "^1.0.2",
+    "swig": "^1.4.2"
   }
 }

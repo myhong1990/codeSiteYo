@@ -1,10 +1,13 @@
 doctype html
 html
   head
-    title Knowledgebase
-    link(rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap.css')
-    link(rel='stylesheet' href='/css/style.css')
+    block head
+      title Knowledgebase
+      link(rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap.css')
   body
+    //-include header for the page
+    include header.pug
+    //- TODO need to work on this
     nav.navbar.navbar-inverse
       .container
         .navbar-header
@@ -29,7 +32,7 @@ html
               li
                 a(href='/users/register') Register
               li
-                a(href='/users/login') Login
+                a(href='./ui/user/login') Login
     .container
       if errors
         each error, i in errors
@@ -37,8 +40,8 @@ html
       block content
       br
       hr
-      footer
-        p Copyright &copy; 2017
-    script(src='/bower_components/jquery/dist/jquery.js')  
-    script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
-    script(src='/js/main.js')  
+    //- include footer of the page
+    include footer.pug
+    //- script(src='/bower_components/jquery/dist/jquery.js')  
+    //- script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
+    //- script(src='/js/main.js')  

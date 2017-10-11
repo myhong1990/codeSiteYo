@@ -7,29 +7,38 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 const config = require('./config/database');
+const consolidate = require('consolidate');
+const http = require("http");
 
+// configure database connection
 mongoose.connect(config.database);
 let db = mongoose.connection;
-
 // Check connection
 db.once('open', function(){
   console.log('Connected to MongoDB');
 });
-
 // Check for DB errors
 db.on('error', function(err){
   console.log(err);
 });
 
+
+
 // Init App
 const app = express();
-
+// Define the port to run on
+app.set('port', 3000);
 // Bring in Models
 let Article = require('./models/article');
 
-// Load View Engine
-app.set('views', path.join(__dirname, 'src/main/views'));
-app.set('view engine', 'pug');
+// Load View Engine with pug
+// app.set('views', path.join(__dirname, 'src/main/dev/views'));
+// app.set('view engine', 'pug');
+
+// Load View Engine with html
+app.engine('html', consolidate.swig);
+app.set('views', path.join(__dirname, './src/main/dist/views/'));
+app.set('view engine', 'html');
 
 // Body Parser Middleware
 // parse application/x-www-form-urlencoded
@@ -38,7 +47,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Set Public Folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, './src/main/dist/')));
+// app.use('/src', express.static(path.join(__dirname, '/public')));
+//Serve static content for the app from the "public" directory in the application directory.
+
+/**
+ * This will map our customized location for .css and .js file to the static location of /public/
+ */
+// GET /style.css etc
+app.use(express.static(__dirname + '/public'));
+// Mount the middleware at "./src/main/dist/" to serve static content only when their request path is prefixed with "./src/main/dist/".
+app.use('./src/main/dist/', express.static(__dirname + '/public'));
 
 // Express Session Middleware
 app.use(session({
@@ -96,6 +115,10 @@ app.get('/', function(req, res){
     }
   });
 });
+app.all('*', function (req, res) {
+  res.status(404);
+  res.render('errors/404'); 
+});
 
 // Route Files
 let articles = require('./routes/articles');
@@ -103,7 +126,8 @@ let users = require('./routes/users');
 app.use('/articles', articles);
 app.use('/users', users);
 
-// Start Server
-app.listen(3000, function(){
-  console.log('Server started on port 3000...');
+// Listen for requests
+var server = app.listen(app.get('port'), function() {
+  var port = server.address().port;
+  console.log('Server started on port...' + port);
 });
