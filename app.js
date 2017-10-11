@@ -47,7 +47,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Set Public Folder
-app.use(express.static(path.join(__dirname, './src/main/dist/')));
+app.use(express.static(path.join(__dirname, './src/')));
 // app.use('/src', express.static(path.join(__dirname, '/public')));
 //Serve static content for the app from the "public" directory in the application directory.
 
@@ -102,23 +102,26 @@ app.get('*', function(req, res, next){
   next();
 });
 
-// Home Route
-app.get('/', function(req, res){
+/**
+ * Home Route
+ * This makes get request to render the home page
+ */
+app.get('/', function(req, res){   
   Article.find({}, function(err, articles){
     if(err){
       console.log(err);
     } else {
-      res.render('index', {
+      res.render('index', { // access to the index.html page
         title:'Articles',
         articles: articles
       });
     }
   });
 });
-app.all('*', function (req, res) {
-  res.status(404);
-  res.render('errors/404'); 
-});
+// app.all('*', function (req, res) {
+//   res.status(404);
+//   res.render('errors/404'); 
+// });
 
 // Route Files
 let articles = require('./routes/articles');

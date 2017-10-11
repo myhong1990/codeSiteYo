@@ -6,9 +6,11 @@ const passport = require('passport');
 // Bring in User Model
 let User = require('../models/user');
 
-// Register Form
+/**
+ * Load the Register Form
+ */
 router.get('/register', function(req, res){
-  res.render('register');
+  res.render('ui/users/register');
 });
 
 // Register Proccess
@@ -52,7 +54,7 @@ router.post('/register', function(req, res){
             return;
           } else {
             req.flash('success','You are now registered and can log in');
-            res.redirect('/users/login');
+            res.redirect('ui/users/login');
           }
         });
       });
@@ -60,16 +62,18 @@ router.post('/register', function(req, res){
   }
 });
 
-// Login Form
+/**
+ * load Login Form
+ */
 router.get('/login', function(req, res){
-  res.render('login');
+  res.render('./ui/users/login');
 });
 
 // Login Process
 router.post('/login', function(req, res, next){
   passport.authenticate('local', {
     successRedirect:'/',
-    failureRedirect:'/users/login',
+    failureRedirect:'ui/users/login',
     failureFlash: true
   })(req, res, next);
 });

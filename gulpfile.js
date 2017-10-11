@@ -57,7 +57,7 @@ gulp.task('sass', function () {
 // interpret pug into html
 gulp.task('views', function buildHTML() {
     return gulp.src(['./src/main/dev/views/**/*.pug'])
-    .pipe(pug())
+    .pipe(pug({pretty:true, basedir:__dirname + '/src/main/'}))
     .pipe(gulp.dest('./src/main/dist/views'))
     .pipe(livereload());
 });

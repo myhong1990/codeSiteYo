@@ -7,7 +7,9 @@ block append head
   meta(name='keywords', content='web design, affordable web design, professional web design')
   meta(name='author', content='My Hong')
   title Coding Tutorials | Welcome
-  link(rel='stylesheet', href='./styles/index.css')
+  //-make sure dont start with ./styles since it will take the current prefix url
+  //-use /styles only it will take the static path we already specify in app.js
+  //- link(rel='stylesheet', href='/styles/index.css') 
 
 block content
     section#showcase
@@ -24,17 +26,17 @@ block content
     section#boxes
       .container
         .box
-          img(src='./img/logo_html.png')
+          img(src='content/images/logo_html.png')
           h3 HTML5 Markup
           p
             | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mi augue, viverra sit amet ultricies
         .box
-          img(src='./img/logo_css.png')
+          img(src='content/images/logo_css.png')
           h3 CSS3 Styling
           p
             | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mi augue, viverra sit amet ultricies
         .box
-          img(src='./img/logo_brush.png')
+          img(src='content/images/logo_brush.png')
           h3 Graphic Design
           p
             | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mi augue, viverra sit amet ultricies

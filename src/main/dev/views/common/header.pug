@@ -1,3 +1,4 @@
+
 header
     .container
         #branding
@@ -5,6 +6,9 @@ header
             span.highlight CodingFun
             |  SoftwareDepot
         nav
+          //- make sure start with /users/, 
+          //- NOT ./users/ (this will cause appending to prefix of current url)
+          //- not users/ (this will cause adding prefix everytime we click)
           ul
             if user
               li 
