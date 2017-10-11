@@ -10,7 +10,7 @@ uglify = require('gulp-uglify'),
 uglify_es = require('gulp-uglify-es').default; // this uglify to work for es6 syntax
 sourcemaps = require('gulp-sourcemaps'),
 livereload = require('gulp-livereload'),
-LessAutoprefix = require('less-plugin-autoprefix'),
+lessautoprefix = require('less-plugin-autoprefix'),
 rename = require('gulp-rename'),
 notify = require('gulp-notify'),
 gulpPath = require('gulp-path'), // this plugin used to organize files' path
@@ -56,9 +56,8 @@ gulp.task('sass', function () {
 
 // interpret pug into html
 gulp.task('views', function buildHTML() {
-    return gulp.src(['./src/main/dev/views/*.pug'])
+    return gulp.src(['./src/main/dev/views/**/*.pug'])
     .pipe(pug())
-    .pipe(concat('index.html'))
     .pipe(gulp.dest('./src/main/dist/views'))
     .pipe(livereload());
 });
@@ -87,7 +86,7 @@ gulp.task('scripts',['lint'], function (cb) {
         gulp.src('src/main/dev/scripts/**/*.js'), // take all file with extension .js
         sourcemaps.init(),
         autoprefixer(),
-        concat('index.js'), // concatenate sources .js file into main.js
+        // concat('index.js'), // concatenate sources .js file into main.js
         rename({suffix: '.min'}), // rename file to index.min.js
         uglify_es(), //minify the file content
         sourcemaps.write('.'),
@@ -112,7 +111,7 @@ gulp.task('sass', function() {
 /**
  * run task to interpret LESS into CSS
  */
-var autoprefix = new LessAutoprefix({ browsers: ['last 2 versions'] });
+var autoprefix = new lessautoprefix({ browsers: ['last 2 versions'] });
 gulp.task('less', function() {
     return gulp.src('./src/main/dev/styles/*.less')
     .pipe(sourcemaps.init())
