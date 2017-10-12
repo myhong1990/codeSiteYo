@@ -1,6 +1,6 @@
 # Article Knowledgebase Application
 
-This is a knowledgebase app used in the "Node.js & Express From Scratch" Youtube series.
+This is software tutorial app used in the "Node.js & Express From Scratch".
 
 ## Technologies
 * Node.js
@@ -10,6 +10,10 @@ This is a knowledgebase app used in the "Node.js & Express From Scratch" Youtube
 * Pug Templating
 * Passport.js Authentication
 * BCrypt Hashing
+* Gulp
+* gulp-autoprefixer, gulp-concat, gulp-jshint, gulp-less, gulp-livereload, gulp-nodemon
+* gulp-notify, gulp-path, gulp-pug, gulp-pug-job, gulp-rename, gulp-ruby-sass,
+* gulp-sourcemaps, gulp-uglify, gulp-uglify-es, jshint, jshint-stylish, less-plugin-autoprefix,
 
 ### Version
 2.0.0

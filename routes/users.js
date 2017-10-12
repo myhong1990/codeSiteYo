@@ -28,10 +28,10 @@ router.post('/register', function(req, res){
   req.checkBody('password', 'Password is required').notEmpty();
   req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
 
-  let errors = req.validationErrors();
+  let errors = req.getValidationResult();
 
   if(errors){
-    res.render('register', {
+    res.render('./ui/users/register', {
       errors:errors
     });
   } else {
@@ -54,7 +54,7 @@ router.post('/register', function(req, res){
             return;
           } else {
             req.flash('success','You are now registered and can log in');
-            res.redirect('ui/users/login');
+            res.redirect('./ui/users/login');
           }
         });
       });
@@ -73,7 +73,7 @@ router.get('/login', function(req, res){
 router.post('/login', function(req, res, next){
   passport.authenticate('local', {
     successRedirect:'/',
-    failureRedirect:'ui/users/login',
+    failureRedirect:'/users/login',
     failureFlash: true
   })(req, res, next);
 });

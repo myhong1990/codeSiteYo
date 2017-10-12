@@ -1,0 +1,29 @@
+nav.navbar.navbar-inverse
+      .container
+        .navbar-header
+          a.navbar-brand(href='/') CodingFun
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar    
+        #navbar.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li
+              a(href='/') Software
+            li
+              a(href='/') Hardware
+            li
+              a(href='/') Network
+            if user
+              li
+                a(href='/articles/add') Add Article
+          ul.nav.navbar-nav.navbar-right
+            if user
+              li 
+                a(href='/users/logout') Logout
+            else
+              li
+                a(href='/users/register') Register
+              li
+                a(href='/users/login') Login
