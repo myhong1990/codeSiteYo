@@ -22,7 +22,10 @@ job = require('gulp-pug-job'),
 // error hanlder to print out specific errors
 pump = require('pump'), 
 path = require('path'),
-chalk = require('chalk');
+chalk = require('chalk'),
+// Minify plugin
+cssmin = require('gulp-cssmin'),
+htmlmin = require('gulp-htmlmin');
 
 
 function errorHandler(error) {
@@ -31,15 +34,6 @@ function errorHandler(error) {
     }
     console.error(chalk.red('[gulp]') + chalk.red(error));
 }
-
-
-// set task of sass reprocessing and auto vending prefixing
-gulp.task('sass', function () {
-    return sass('./dev/styles/sass/*.scss', {style: 'expanded'})
-    .pipe(autoprefixer('last 2 version'))
-    .pipe(gulp.dest('./dist/styles/'))
-    .pipe(livereload());
-});
 
 //Concatenate and minify JS files
 // gulp.task('scripts', function() {
@@ -58,6 +52,7 @@ gulp.task('sass', function () {
 gulp.task('views', function buildHTML() {
     return gulp.src(['./src/main/dev/views/**/*.pug'])
     .pipe(pug({pretty:true, basedir:__dirname + '/src/main/'}))
+    .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest('./src/main/dist/views'))
     .pipe(livereload());
 });
@@ -98,18 +93,8 @@ gulp.task('scripts',['lint'], function (cb) {
 });
 
 /**
- * run task to interpret Sass into CSS
- */
-gulp.task('sass', function() {
-    // return gulp.src('src/styles/*.scss')
-    // .pipe(concat('index.scss')) 
-    // .pipe(sass('src/styles/index.scss', {style: 'compressed'}))
-    // .pipe(rename({suffix: '.min'}))
-    // .pipe(gulp.dest('src/styles'));
-});
-
-/**
  * run task to interpret LESS into CSS
+ * Minify less file and convert to css
  */
 var autoprefix = new lessautoprefix({ browsers: ['last 2 versions'] });
 gulp.task('less', function() {
@@ -118,7 +103,9 @@ gulp.task('less', function() {
     .pipe(less({
         plugins: [autoprefix]
       }))
-    .pipe(sourcemaps.write('./maps'))
+    .pipe(cssmin())
+    .pipe(rename({suffix: '.min'}))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./src/main/dist/styles'))
 });
 
