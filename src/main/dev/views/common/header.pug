@@ -1,20 +1,24 @@
 header
-    .container
-        #branding
-          h1
-            img(src='/content/images/home/logo_home.png')
-            span.highlight CodingFun
-            |  SoftwareDepot
-        nav
-          //- make sure start with /users/, 
-          //- NOT ./users/ (this will cause appending to prefix of current url)
-          //- not users/ (this will cause adding prefix everytime we click)
-          ul
-            if user
-              li 
-                a(href='/users/logout') Logout 
-            else
-              li
-                a(href='/users/register') Register
-              li
-                a(href='/users/login') Login
+  .container
+    #branding
+      h1#headBoard
+        img(src='/content/images/home/logo_home.png')
+        span.highlight CodingFun
+        |  SoftwareDepot
+    #userNav
+      //- make sure start with /users/, 
+      //- NOT ./users/ (this will cause appending to prefix of current url)
+      //- not users/ (this will cause adding prefix everytime we click)
+      ul#userBar
+        if user
+          li.userAct
+            a.userLink(href='/users/logout') Logout 
+        else
+          li.userAct
+            a.userLink(href='/users/register')
+              span.glyphicon.glyphicon-user
+              |  Sign Up
+          li.userAct
+            a.userLink(href='/users/login')
+              span.glyphicon.glyphicon-log-in
+              |  Login

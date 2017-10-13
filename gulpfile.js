@@ -23,9 +23,26 @@ job = require('gulp-pug-job'),
 pump = require('pump'), 
 path = require('path'),
 chalk = require('chalk'),
+del = require('del'),
 // Minify plugin
 cssmin = require('gulp-cssmin'),
 htmlmin = require('gulp-htmlmin');
+
+
+var paths = {
+    src: 'src/**/*',
+    srcViews: 'src/main/dev/**/*.pug',
+    srcStyles: 'src/main/dev/**/*.less',
+    srcScripts: 'src/main/dev/**/*.js',
+    tmp: 'tmp',
+    tmpViews: 'tmp/index.html',
+    tmpStyles: 'tmp/**/*.css',
+    tmpScripts: 'tmp/**/*.js',
+    dist: 'dist',
+    distViews: 'src/main/dist/**/*.html',
+    distStyles: 'src/main/dist/**/*.css',
+    distScripts: 'src/main/dist/**/*.js'
+};
 
 
 function errorHandler(error) {
@@ -48,9 +65,25 @@ function errorHandler(error) {
 //     })
 // });
 
+// checks any JavaScript file in our directory and makes sure there are no errors in our code.
+gulp.task('lint', function (cb) {
+    pump([
+        gulp.src('./src/main/dev/scripts/**/*.js'), // looks for all .js files in this repository
+        jshint('.jshintrc'),
+        jshint.reporter('jshint-stylish'),
+        livereload()
+    ],
+    cb
+  );
+});
+
+gulp.task('clean', function () {
+    del([paths.distViews,paths.distStyles,paths.distScripts]);
+});
+
 // interpret pug into html
 gulp.task('views', function buildHTML() {
-    return gulp.src(['./src/main/dev/views/**/*.pug'])
+    return gulp.src('./src/main/dev/views/**/*.pug')
     .pipe(pug({pretty:true, basedir:__dirname + '/src/main/'}))
     .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest('./src/main/dist/views'))
@@ -59,33 +92,22 @@ gulp.task('views', function buildHTML() {
 
 // create task to reload browser whenever an .pug files gets changed
 gulp.task('html', function () {
-    return gulp.src('./dev/views/*.pug')
+    return gulp.src('./src/main/dev/views/*.pug')
     .pipe(livereload());
 });
 
-// checks any JavaScript file in our directory and makes sure there are no errors in our code.
-gulp.task('lint', function (cb) {
-    pump([
-        gulp.src('src/main/dev/scripts/**/*.js'), // looks for all .js files in this repository
-        jshint('.jshintrc'),
-        jshint.reporter('jshint-stylish'),
-        livereload()
-    ],
-    cb
-  );
-});
 // task to concatenate and minify all javascript files
 // run scripts task after lint task is done.
 gulp.task('scripts',['lint'], function (cb) {
     pump([
-        gulp.src('src/main/dev/scripts/**/*.js'), // take all file with extension .js
+        gulp.src('./src/main/dev/scripts/**/*.js'), // take all file with extension .js
         sourcemaps.init(),
         autoprefixer(),
         // concat('index.js'), // concatenate sources .js file into main.js
         rename({suffix: '.min'}), // rename file to index.min.js
         uglify_es(), //minify the file content
         sourcemaps.write('.'),
-        gulp.dest('src/main/dist/scripts'), // tell gulp where to put concatenated file
+        gulp.dest('./src/main/dist/scripts'), // tell gulp where to put concatenated file
         livereload()
       ],
       cb
@@ -98,15 +120,17 @@ gulp.task('scripts',['lint'], function (cb) {
  */
 var autoprefix = new lessautoprefix({ browsers: ['last 2 versions'] });
 gulp.task('less', function() {
-    return gulp.src('./src/main/dev/styles/*.less')
+    return gulp.src('./src/main/dev/styles/**/*.less')
     .pipe(sourcemaps.init())
+    .pipe(autoprefixer())
     .pipe(less({
         plugins: [autoprefix]
-      }))
-    .pipe(cssmin())
+    }))
     .pipe(rename({suffix: '.min'}))
+    .pipe(cssmin())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./src/main/dist/styles'))
+    .pipe(livereload())
 });
 
 
@@ -114,10 +138,9 @@ gulp.task('less', function() {
 // Watch Files For Changes
 gulp.task('watch', function() {
     livereload.listen();
-    gulp.watch('src/main/dev/scripts/**/*.js', ['lint', 'scripts']);
-    gulp.watch('src/main/dev/styles/*.scss', ['sass']);
-    // gulp.watch('src/main/dev/styles/*.less', ['less']);
-    gulp.watch('src/main/dev/views/*.pug', ['views']);
+    gulp.watch('./src/main/dev/scripts/**/*.js', ['lint', 'scripts']);
+    gulp.watch('./src/main/dev/styles/*.less', ['less']);
+    gulp.watch('./src/main/dev/views/*.pug', ['views']);
 });
 
 
@@ -128,6 +151,7 @@ gulp.task('server', function() {
     });
 });
 
-gulp.task('default', ['scripts', 'less', 'views']);
 gulp.task('serve', ['server', 'watch']);
+gulp.task('default', ['clean', 'views', 'scripts', 'less', 'serve']);
+
 

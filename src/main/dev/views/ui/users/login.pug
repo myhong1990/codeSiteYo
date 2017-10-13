@@ -1,13 +1,21 @@
 extends /dev/views/common/layout
 
+block append head
+  //-make sure dont start with ./styles since it will take the current prefix url
+  //-use /styles only it will take the static path we already specify in app.js
+  link(rel='stylesheet', href='/main/dist/styles/users/login.min.css') 
+
 block content
-  h1 Login
-  form(method='POST', action='/users/login')
-    #form-group
-      label Username:
-      input.form-control(name='username',type='text')
-    #form-group
-      label Password:
-      input.form-control(name='password',type='password')
-    br
-    input.btn.btn-primary(type='submit',value='Submit')
+  .loginBox
+    img.user(src='user.png')
+    h2 Log In Here
+    form(method='POST', action='/users/login')
+      #form-group
+        label Username:
+        input.form-control(type='text', name='username', placeholder='Enter Username or Email')
+      #form-group
+        label Password:
+        input.form-control(type='password', name='password', placeholder='•••••••••')
+      br
+      input.btn.btn-primary(type='submit', name='login', value='Sign In')
+      a(href='#') Forget Password

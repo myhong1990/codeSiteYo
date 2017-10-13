@@ -3,7 +3,7 @@ extends common/layout
 block append head
   //-make sure dont start with ./styles since it will take the current prefix url
   //-use /styles only it will take the static path we already specify in app.js
-  //- link(rel='stylesheet', href='/styles/index.css') 
+  link(rel='stylesheet', href='/main/dist/styles/index.min.css') 
 
 block content
     section#showcase
@@ -11,6 +11,27 @@ block content
         h1 Affordable Professional Web Design
         p
           | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu luctus ipsum, rhoncus semper magna. Nulla nec magna sit amet sem interdum condimentum.
+      #myCarousel.carousel.slide(data-ride='carousel')
+        //- Indicators
+        ol.carousel-indicators
+          li.active(data-target='#myCarousel', data-slide-to='0')
+          li(data-target='#myCarousel', data-slide-to='1')
+          li(data-target='#myCarousel', data-slide-to='2')
+        //- Wrapper for slides
+        .carousel-inner
+          .item.active
+            img(src='/content/images/home/showcase.jpg', alt='Los Angeles')
+          .item
+            img(src='/content/images/home/showcase.jpg', alt='Chicago')
+          .item
+            img(src='/content/images/home/showcase.jpg', alt='New York')
+        //- Left and right controls
+        a.left.carousel-control(href='#myCarousel', data-slide='prev')
+          span.glyphicon.glyphicon-chevron-left
+          span.sr-only Previous
+        a.right.carousel-control(href='#myCarousel', data-slide='next')
+          span.glyphicon.glyphicon-chevron-right
+          span.sr-only Next
     section#newsletter
       .container
         h1 Subscribe To Our Newsletter

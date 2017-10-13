@@ -1,0 +1,160 @@
+@head_txt1: #3783ff;
+@bg_blk: #000000;
+@header_txt:#2200fd;
+@color_3: #b5ff3e;
+/**Desktop Query*/
+@media only screen and (min-width: 768px) {
+    header {
+        background:@bg_blk; 
+        border-bottom: @header_txt 0.3rem solid;
+        color: @head_txt1;
+        width:100%;
+        padding-top: 20px;
+        min-height: 70px;
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            #branding {
+                float: left;
+                #headBoard {
+                    margin: 0;
+                    .highlight {
+                        color: @header_txt;
+                        font-weight: bold;
+                    }
+                }
+            }
+            #userNav {
+                float: right;
+                margin-top: 1rem;
+                #userBar {
+                    margin: 0;
+                    padding: 0;
+                    .userAct {
+                        display: inline;
+                        padding: 0 2rem 0 2rem;
+                        .userLink {
+                            color: @head_txt1;
+                            text-decoration: none;
+                            text-transform: capitalize;
+                            font-size: 1.6rem;
+                            &:hover {
+                                color: @color_3;
+                                font-weight: bold;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+/**Tablet Query*/
+@media only screen and (min-width: 481px) and (max-width:768px) {
+    header {
+        background:@bg_blk; 
+        border-bottom: @header_txt 0.3rem solid;
+        color: @head_txt1;
+        width:100%;
+        padding-top: 20px;
+        min-height: 70px;
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            #branding {
+                float: none;
+                text-align: center;
+                width: 100%;
+                #headBoard {
+                    margin: 0;
+                    .highlight {
+                        color: @header_txt;
+                        font-weight: bold;
+                    }
+                }
+            }
+            #userNav {
+                margin-top: 10px;
+                float: none;
+                text-align: center;
+                width: 100%;
+                #userBar {
+                    margin: 0;
+                    padding: 0;
+                    list-style-type: none;
+                    #userAct {
+                        float: none;
+                        text-align: center;
+                        width: 100%;
+                        #userLink {
+                            color: @head_txt1;
+                            text-decoration: none;
+                            text-transform: capitalize;
+                            font-size: 1.6rem!important;
+                            &:hover {
+                                color: @color_3;
+                                font-weight: bold;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+/*Mobile Query*/
+@media only screen and (max-width:480px) {
+	header {
+        background:@bg_blk; 
+        border-bottom: @header_txt 0.3rem solid;
+        color: @head_txt1;
+        width:100%;
+        padding-top: 20px;
+        min-height: 70px;
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            #branding {
+                float: none;
+                text-align: center;
+                width: 100%;
+                #headBoard {
+                    margin: 0;
+                    .highlight {
+                        color: @header_txt;
+                        font-weight: bold;
+                    }
+                }
+            }
+            #userNav {
+                margin-top: 10px;
+                float: none;
+                text-align: center;
+                width: 100%;
+                #userBar {
+                    margin: 0;
+                    padding: 0;
+                    list-style-type: none;
+                    #userAct {
+                        float: none;
+                        text-align: center;
+                        width: 100%;
+                        #userLink {
+                            color: @head_txt1;
+                            text-decoration: none;
+                            text-transform: capitalize;
+                            font-size: 1.6rem;
+                            &:hover {
+                                color: @color_3;
+                                font-weight: bold;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

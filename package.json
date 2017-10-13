@@ -34,6 +34,7 @@
   "devDependencies": {
     "chalk": "^2.1.0",
     "consolidate": "^0.14.5",
+    "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-concat": "^2.6.1",

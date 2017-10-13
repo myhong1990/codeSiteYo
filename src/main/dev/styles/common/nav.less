@@ -1,0 +1,29 @@
+@nav_bg: #272626;
+@nav_txt: #8792f0;
+
+#main-nav {
+    background:@nav_bg;
+    color: @nav_txt;
+    width:100%;
+    min-height: 7rem;
+    .grid_73 {
+        padding-right: 1.5rem;
+        padding-left: 1.5rem;
+        margin-right: auto;
+        margin-left: auto;
+        #nav-menu { 
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                position: relative;
+                text-align: center;
+            }
+            ul:after {
+                content: "";
+                clear: both;
+                display: block;
+            }
+        }
+    }
+}

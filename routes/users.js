@@ -31,7 +31,7 @@ router.post('/register', function(req, res){
   let errors = req.getValidationResult();
 
   if(errors){
-    res.render('./ui/users/register', {
+    res.render('ui/users/register', {
       errors:errors
     });
   } else {
