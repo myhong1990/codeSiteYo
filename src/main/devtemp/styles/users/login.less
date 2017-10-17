@@ -1,0 +1,88 @@
+@color_1: #efed40;
+@color_2: #fff;
+@color_3: rgba(255,255,255,.5);
+@color_4: #262626;
+@font_family_1: sans-serif;
+
+.loginBox {
+	margin: 0;
+	padding: 0;
+	background: url(bg.jpg);
+	background-size: cover;
+	font-family: @font_family_1;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 350px;
+	padding: 80px 40px;
+	box-sizing: border-box;
+	height: 420px;
+	background: rgba(0,0,0,.6);
+	p {
+		margin: 0;
+		padding: 0;
+		font-weight: bold;
+		color: @color_2;
+	}
+	input {
+		width: 100%;
+		margin-bottom: 20px;
+	}
+	input[type="text"] {
+		border: none;
+		border-bottom: 1px solid #fff;
+		outline: none;
+		height: 40px;
+		background: transparent;
+		color: @color_2;
+		font-size: 16px;
+	}
+	input[type="Password"] {
+		border: none;
+		border-bottom: 1px solid #fff;
+		outline: none;
+		height: 40px;
+		background: transparent;
+		color: @color_2;
+		font-size: 16px;
+	}
+	input[type="submit"] {
+		border: none;
+		outline: none;
+		height: 40px;
+		color: @color_2;
+		font-size: 16px;
+		background: #ff267e;
+		cursor: pointer;
+		border-radius: 20px;
+		&:hover {
+			background: #efed40;
+			color: @color_4;
+		}
+	}
+	a {
+		color: @color_2;
+		font-size: 14px;
+		font-weight: bold;
+		text-decoration: none;
+	}
+}
+.user {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	overflow: hidden;
+	position: absolute;
+	top: calc(-100px/2);
+	left: calc(50% - 50px);
+}
+h2 {
+	margin: 0;
+	padding: 0 0 20px;
+	color: @color_1;
+	text-align: center;
+}
+&::placeholder {
+	color: @color_3;
+}

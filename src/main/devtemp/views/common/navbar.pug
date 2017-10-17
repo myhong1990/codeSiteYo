@@ -1,0 +1,127 @@
+nav#menu.grid_73.grid_19_m 
+  label#toggle-menu(for='tm')
+    | Navigation 
+    span.drop-icon ▾
+  input#tm(type='checkbox')
+  ul.main-menu.cf
+    li
+      a(href='/software/backend/java') Sample
+    li
+      a(href='#')
+        | Dropdown
+        span.drop-icon ▾
+        label.drop-icon(title='Toggle Drop-down', for='sm0') ▾
+      input#sm0(type='checkbox')
+      ul.sub-menu
+        li
+          a(href='#') Item 1.1
+        li
+          a(href='#') Item 1.2
+        li
+          a(href='#') Item 1.3
+        li
+          a(href='#') Item 1.4
+    li
+      a(href='#')
+        | 2-level DD 
+        span.drop-icon ▾
+        label.drop-icon(title='Toggle Drop-down', for='sm1') ▾
+      input#sm1(type='checkbox')
+      ul.sub-menu
+        li
+          a(href='#') Item 2.1
+        li
+          a(href='#')
+            | Item 2.2
+            span.drop-icon ▸
+            label.drop-icon(title='Toggle Drop-down', for='sm2') ▾
+          input#sm2(type='checkbox')
+          ul.sub-menu
+            li
+              a(href='#') Item 2.2.1
+            li
+              a(href='#') Item 2.2.2
+            li
+              a(href='#') Item 2.2.3
+        li
+          a(href='#') Item 2.3
+    li
+      a(href='#')
+        | Multiple Levels
+        span.drop-icon ▾
+        label.drop-icon(title='Toggle Drop-down', for='sm3') ▾
+      input#sm3(type='checkbox')
+      ul.sub-menu
+        li
+          a(href='')
+            | 3.1
+            span.drop-icon ▸
+            label.drop-icon(title='Toggle Drop-down', for='sm4') ▾
+          input#sm4(type='checkbox')
+          ul.sub-menu
+            li
+              a(href='') 3.1.1
+            li
+              a(href='') 3.1.2
+            li
+              a(href='') 3.1.3
+            li
+              a(href='') 3.1.4
+        li
+          a(href='')
+            | 3.2
+            span.drop-icon ▸
+            label.drop-icon(title='Toggle Drop-down', for='sm5') ▾
+          input#sm5(type='checkbox')
+          ul.sub-menu
+            li
+              a(href='') 3.2.1
+            li
+              a(href='') 3.2.2
+            li
+              a(href='') 3.2.3
+        li
+          a(href='')
+            | 3.3
+            span.drop-icon ▸
+            label.drop-icon(title='Toggle Drop-down', for='sm6') ▾
+          input#sm6(type='checkbox')
+          ul.sub-menu
+            li
+              a(href='') 3.3.1
+            li
+              a(href='') 3.3.2
+            li
+              a(href='') 3.2.2
+            li
+              a(href='') 3.3.4
+            li
+              a(href='') 3.3.5
+    li
+      a(href='#') Sample #2
+    li
+      a(href='#')
+        | Another DD
+        span.drop-icon ▾
+        label.drop-icon(title='Toggle Drop-down', for='sm8') ▾
+      input#sm8(type='checkbox')
+      ul.sub-menu
+        li
+          a(href='') 4.1
+        li
+          a(href='') 4.2
+        li
+          a(href='') 4.2
+        li
+          a(href='') 4.4
+        //-this only show when user already logged in
+    if user
+      li
+        a(href='/articles/add') Add Article
+      li
+        a(href='/articles/add') Add Article
+  #searchWrap
+    #searchBar
+      input.searchBox(type='text', placeholder='What are you looking for?')
+      button.searchButton(type='submit')
+        i.fa.fa-search

@@ -1,48 +1,64 @@
-@head_txt1: #3783ff;
-@bg_blk: #000000;
-@header_txt:#2200fd;
-@color_3: #b5ff3e;
-/**Desktop Query*/
-@media only screen and (min-width: 768px) {
-    header {
-        background:@bg_blk; 
-        border-bottom: @header_txt 0.3rem solid;
-        color: @head_txt1;
-        width:100%;
-        padding-top: 20px;
-        min-height: 70px;
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-            #branding {
-                float: left;
-                #headBoard {
-                    margin: 0;
-                    .highlight {
-                        color: @header_txt;
-                        font-weight: bold;
+@header_bg: #000000;
+@header_usertxt: #0043af;
+@header_usertxt_hover: #f3ffe1;
+@header_brandtxt:#fda400;
+
+
+header {
+    background:@header_bg; 
+    border-bottom: @header_brandtxt 0.2rem solid;
+    width:100%;
+    padding-top: 1.5rem;
+    min-height: 7rem;
+    .grid_73 {
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+        vertical-align: middle;
+        .grid_19 {
+            width:100%;
+        }
+        #branding {
+            float: left;
+            #headBoard {
+                margin: 0;
+                font-size: 3.6rem;
+                #pgLogo {
+                    overflow: hidden;
+                    display: inline-block;
+                    padding: 0;
+                    #homeLogo {
+                        // background-image: url("path/to/img");
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        float:left;
                     }
                 }
+                .highlight {
+                    color: @header_brandtxt;
+                    font-weight: bold;
+                }
             }
-            #userNav {
+        }
+        #userNav {
+            margin-top: 1rem;
+            padding-right: 1rem;
+            #userBar {
+                margin: 0;
+                padding: 0;
+                text-align: center;
                 float: right;
-                margin-top: 1rem;
-                #userBar {
-                    margin: 0;
-                    padding: 0;
-                    .userAct {
-                        display: inline;
-                        padding: 0 2rem 0 2rem;
-                        .userLink {
-                            color: @head_txt1;
-                            text-decoration: none;
-                            text-transform: capitalize;
-                            font-size: 1.6rem;
-                            &:hover {
-                                color: @color_3;
-                                font-weight: bold;
-                            }
+                .userAct {
+                    display: inline;
+                    padding-left: 2rem;
+                    font-size: 2rem;
+                    .userLink {
+                        color: @header_usertxt;
+                        text-decoration: none;
+                        text-transform: capitalize;
+                        &:hover {
+                            color: @header_usertxt_hover;
+                            font-weight: bold;
                         }
                     }
                 }
@@ -50,110 +66,33 @@
         }
     }
 }
-/**Tablet Query*/
-@media only screen and (min-width: 481px) and (max-width:768px) {
-    header {
-        background:@bg_blk; 
-        border-bottom: @header_txt 0.3rem solid;
-        color: @head_txt1;
-        width:100%;
-        padding-top: 20px;
-        min-height: 70px;
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-            #branding {
-                float: none;
-                text-align: center;
-                width: 100%;
-                #headBoard {
-                    margin: 0;
-                    .highlight {
-                        color: @header_txt;
-                        font-weight: bold;
-                    }
-                }
-            }
-            #userNav {
-                margin-top: 10px;
-                float: none;
-                text-align: center;
-                width: 100%;
-                #userBar {
-                    margin: 0;
-                    padding: 0;
-                    list-style-type: none;
-                    #userAct {
-                        float: none;
-                        text-align: center;
-                        width: 100%;
-                        #userLink {
-                            color: @head_txt1;
-                            text-decoration: none;
-                            text-transform: capitalize;
-                            font-size: 1.6rem!important;
-                            &:hover {
-                                color: @color_3;
-                                font-weight: bold;
-                            }
-                        }
-                    }
-                }
+/* Responsive Styles*/
+@media screen and (max-width: 768px) {
+    #branding {
+        float: none;
+        text-align: center;
+        width: 100%;
+        #pgLogo {
+            width: 100%;
+            text-align: center;
+            #homeLogo {
+                float:none!important;
             }
         }
     }
-}
-/*Mobile Query*/
-@media only screen and (max-width:480px) {
-	header {
-        background:@bg_blk; 
-        border-bottom: @header_txt 0.3rem solid;
-        color: @head_txt1;
+    #userNav {
+        float:none;
+        text-align:center;
         width:100%;
-        padding-top: 20px;
-        min-height: 70px;
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-            #branding {
-                float: none;
-                text-align: center;
-                width: 100%;
-                #headBoard {
-                    margin: 0;
-                    .highlight {
-                        color: @header_txt;
-                        font-weight: bold;
-                    }
-                }
-            }
-            #userNav {
-                margin-top: 10px;
-                float: none;
-                text-align: center;
-                width: 100%;
-                #userBar {
-                    margin: 0;
-                    padding: 0;
-                    list-style-type: none;
-                    #userAct {
-                        float: none;
-                        text-align: center;
-                        width: 100%;
-                        #userLink {
-                            color: @head_txt1;
-                            text-decoration: none;
-                            text-transform: capitalize;
-                            font-size: 1.6rem;
-                            &:hover {
-                                color: @color_3;
-                                font-weight: bold;
-                            }
-                        }
-                    }
-                }
+        margin:0 0 1rem 0;
+        padding-right:0!important;
+        #userBar {
+            list-style-type:none;
+            float:none!important;
+            #userAct {
+                float:none;
+                text-align:center;
+                width:100%;
             }
         }
     }

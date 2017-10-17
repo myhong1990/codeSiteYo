@@ -1,38 +1,69 @@
-nav#main-nav
-  .grid_73 
-    #nav-menu
-      a.navbar-brand.active(href='/') CodingFun
-      ul.nav.navbar-nav
-        li.dropdown
-          a.dropdown-toggle(data-toggle='dropdown', href='/software/backend/java')
-            | Software 
-            span.caret
-          ul.dropdown-menu
-            li
-              a(href='/software/backend/java') Backend
-            li
-              a(href='#') Frontend
-            li
-              a(href='#') Database
+nav#menu
+  .grid_73.grid_19_m
+    #nav
+      label#toggle-menu(for='tm')
+        | Navigation 
+        span.drop-icon ▾
+      input#tm(type='checkbox')
+      ul
         li
-          a(href='/') Hardware
+          a(href='#') Home
         li
-          a(href='/') Network
+          a(href='#') About Us
+        li
+          a(href='#') Our Portfolio
+        li
+          a(href='#') One Dropdown
+          ul
+            li
+              a(href='#') Level 2.1
+            li
+              a(href='#') Level 2.2
+            li
+              a(href='#') Level 2.3
+            li
+              a(href='#') Level 2.4
+            li
+              a(href='#') Level 2.5
+        li
+          a(href='#') Three Levels
+          ul
+            li
+              a(href='#') Level 2.1
+            li
+              a(href='#') Level 2.2
+            li
+              a(href='#') Level 2.3
+              ul
+                li
+                  a(href='#') Level 2.3.1
+                li
+                  a(href='#') Level 2.3.2
+                li
+                  a(href='#') Level 2.3.3
+                li
+                  a(href='#') Level 2.3.4
+                li
+                  a(href='#') Level 2.3.5
+                li
+                  a(href='#') Level 2.3.6
+                li
+                  a(href='#') Level 2.3.7
+            li
+              a(href='#') Level 2.4
+            li
+              a(href='#') Level 2.5
+        li
+          a(href='#') Services
+        li
+          a(href='#') Contact Us
         if user
           li
             a(href='/articles/add') Add Article
-      ul.nav.navbar-nav.navbar-right
-        if user
-          li 
-            a(href='/users/logout') Logout
-        else
           li
-            a(href='/users/register') Register
-          li
-            a(href='/users/login') Login
-    #search-bar
-      button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
-        span.sr-only Toggle navigation
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar   
+            a(href='/articles/add') Add Article
+    #searchWrap
+      #searchBar
+        input.searchBox(type='text', placeholder='What are you looking for?')
+        button.searchButton(type='submit')
+          i.fa.fa-search

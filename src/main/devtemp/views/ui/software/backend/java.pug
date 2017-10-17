@@ -1,0 +1,31 @@
+extends /dev/views/common/layout
+
+block append head
+  //-make sure dont start with ./styles since it will take the current prefix url
+  //-use /styles only it will take the static path we already specify in app.js
+  link(rel='stylesheet', href='/main/dist/styles/software/backend/java.min.css')
+
+block content
+  section.container
+    nav#jPanelMenu-menu(style='width: 250px;z-index: 1;display: block;')
+        ul
+          li
+            a(rel='nofollow', href='#') Overview
+          li
+            a(rel='nofollow', href='#usage') Usage
+          li
+            a(rel='nofollow', href='#inner-workings') Inner-Workings
+          li
+            a(rel='nofollow', href='#animation') Animation
+          li
+            a(rel='nofollow', href='#options') Options
+          li
+            a(rel='nofollow', href='#api') API
+          li
+            a(rel='nofollow', href='#tips') Tips & Examples
+          li
+            a(rel='nofollow', href='#license') License
+          li
+            a(rel='nofollow', href='#changelog') Changelog
+          li
+            a(rel='nofollow', href='#about') About

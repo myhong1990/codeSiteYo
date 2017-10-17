@@ -1,0 +1,39 @@
+@background_color_1: #f4f4f4;
+/**
+* set the root font size to 10px for measurement convenience
+* 1em = 10px on first level, second level it increase (em take the size of nearest parent, so inconsistent)
+* 1rem = 10px consistently
+*/
+html {
+    font-size: 62.5%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body {
+    font-size: 100%;
+}
+html, body {
+    min-height: 100%;
+    overflow:hidden;
+    height: auto;
+    padding: 0;
+	margin: 0;
+	background-color: @background_color_1;
+}
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+#staticPage {
+    margin-left:auto;
+    margin-right:auto;
+    width:960px;
+}
+
+/* Responsive Styles*/
+@media screen and (max-width: 768px) {
+
+}

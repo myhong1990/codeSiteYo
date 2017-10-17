@@ -1,0 +1,101 @@
+@grid_height: 7rem;
+@trans_color: transparent;
+
+/** grid layout ratio 7 - 3 on full width*/
+.grid_73 {
+	display: grid;
+	grid-template-columns: 70% 30%;
+	grid-gap: 0.2rem;
+	>div {
+		background: @trans_color;
+		// padding: 1rem;
+		&:nth-child(odd) {
+			background: @trans_color;
+		}
+	}
+}
+/** grid layout ratio 3 -7 on full width*/
+.grid_37 {
+	display: grid;
+	grid-template-columns: 30% 70%;
+	grid-gap: 0.2rem;
+	>div {
+		background: #eee;
+		&:nth-child(odd) {
+			background: #ddd;
+		}
+	}
+}
+.grid_19 {
+	display: grid;
+	grid-template-columns: 10% 90%;
+	grid-gap: 0.2rem;
+	>div {
+		background: @trans_color;
+		&:nth-child(odd) {
+			background: @trans_color;
+		}
+	}
+}
+/** grid layout ratio 3-3-3 on full width*/
+.grid_333 {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 1em;
+	grid-auto-rows: minmax(100px, auto);
+	>div {
+		background: #eee;
+		padding: 1em;
+		&:nth-child(odd) {
+			background: #ddd;
+		}
+	}
+}
+/** evenl divide row into 3 even columns*/
+.gridlist_3 {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);  /**set 3 boxes each row*/
+	grid-auto-rows: @grid_height; /**this is the height of each child box*/
+	grid-gap: 1em;
+	>div {
+		border: #333 1px solid;
+		padding: 1em;
+	}
+}
+/** evenl divide row into 4 even columns*/
+.gridlist_4 {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr); /**set 4 boxes each row*/
+	grid-auto-rows: @grid_height; /**this is the height of each child box*/
+	grid-gap: 1em;
+	>div {
+		border: #333 1px solid;
+		padding: 1em;
+	}
+}
+
+/* Responsive Styles*/
+@media screen and (max-width: 768px) {
+	/** grid layout ratio 7 - 3 on full width*/
+	.grid_73 {
+		display: grid;
+		grid-template-columns: 100%;
+		>div {
+			background: @trans_color;
+		}
+	}
+	.grid_19 {
+		display: grid;
+		grid-template-columns: 100%;
+		>div {
+			background: @trans_color;
+		}
+	}
+	.grid_19_m {
+		display: grid;
+		grid-template-columns: 10% 90%;
+		>div {
+			background: @trans_color;
+		}
+	}
+}

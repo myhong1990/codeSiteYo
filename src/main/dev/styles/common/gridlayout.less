@@ -1,6 +1,35 @@
 @grid_height: 7rem;
 @trans_color: transparent;
 
+.wrapper {
+	display: grid;
+	width: 100%;
+	height: 250px;
+	grid-template-areas: "head head"
+						 "nav nav"
+						 "main main"
+						 "foot foot";
+	grid-template-rows:3fr 2fr auto 2fr;
+}
+.wrapper > header {
+	grid-area: head;
+	background-color: #8ca0ff;
+}
+.wrapper > nav {
+	grid-area: nav;
+	background-color: #8cffc5;
+}
+  
+.wrapper > main {
+	grid-area: main;
+	background-color: #ffff64;
+}
+  
+.wrapper > footer {
+	grid-area: foot;
+	background-color: #ffb68c;
+}
+
 /** grid layout ratio 7 - 3 on full width*/
 .grid_73 {
 	display: grid;
@@ -8,7 +37,7 @@
 	grid-gap: 0.2rem;
 	>div {
 		background: @trans_color;
-		padding: 1rem;
+		// padding: 1rem;
 		&:nth-child(odd) {
 			background: @trans_color;
 		}
@@ -18,12 +47,22 @@
 .grid_37 {
 	display: grid;
 	grid-template-columns: 30% 70%;
-	grid-gap: 1em;
+	grid-gap: 0.2rem;
 	>div {
 		background: #eee;
-		padding: 1em;
 		&:nth-child(odd) {
 			background: #ddd;
+		}
+	}
+}
+.grid_19 {
+	display: grid;
+	grid-template-columns: 10% 90%;
+	grid-gap: 0.2rem;
+	>div {
+		background: @trans_color;
+		&:nth-child(odd) {
+			background: @trans_color;
 		}
 	}
 }
@@ -61,5 +100,31 @@
 	>div {
 		border: #333 1px solid;
 		padding: 1em;
+	}
+}
+
+/* Responsive Styles*/
+@media screen and (max-width: 768px) {
+	/** grid layout ratio 7 - 3 on full width*/
+	.grid_73 {
+		display: grid;
+		grid-template-columns: 100%;
+		>div {
+			background: @trans_color;
+		}
+	}
+	.grid_19 {
+		display: grid;
+		grid-template-columns: 100%;
+		>div {
+			background: @trans_color;
+		}
+	}
+	.grid_19_m {
+		display: grid;
+		grid-template-columns: 10% 90%;
+		>div {
+			background: @trans_color;
+		}
 	}
 }

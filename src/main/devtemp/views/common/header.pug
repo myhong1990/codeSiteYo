@@ -1,0 +1,26 @@
+header
+  .grid_73
+    #branding
+      h1#headBoard.grid_19
+        #pgLogo
+          img#homeLogo(src='/content/images/home/logo_home.png')
+        span.highlight CodingFun SoftwareDepot
+    #userNav
+      //- make sure start with /users/, 
+      //- NOT ./users/ (this will cause appending to prefix of current url)
+      //- not users/ (this will cause adding prefix everytime we click)
+      ul#userBar
+        if user
+          li.userAct
+            a.userLink(href='/users/logout')
+              span.fa.fa-sign-out
+              |  Logout 
+        else
+          li.userAct
+            a.userLink(href='/users/register')
+              span.fa.fa-user-plus
+              |  Sign-Up
+          li.userAct
+            a.userLink(href='/users/login')
+              span.fa.fa-sign-in
+              |   Login

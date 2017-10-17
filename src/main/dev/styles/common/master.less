@@ -1,3 +1,19 @@
+@charset 'UTF-8';
+/**
+*import header of the page
+*/
+@import "header.less";
+/**
+*import navigation of the page
+*/
+@import "nav.less";
+/**
+*import footer of the page
+*/
+@import "footer.less";
+
+
+
 @background_color_1: #f4f4f4;
 /**
 * set the root font size to 10px for measurement convenience
@@ -5,38 +21,35 @@
 * 1rem = 10px consistently
 */
 html {
-    font-size: 10px;
+    font-size: 62.5%;
+    height: auto;
+    min-height: 100%;
+}
+body {
+    font-size: 100%;
+    min-height:100vh;
+    position: relative;
 }
 html, body {
-    font-size: 10px;
-    font-style: Arial, Helvetica,sans-serif;
-    min-height: 100%;
-    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
     padding: 0;
 	margin: 0;
 	background-color: @background_color_1;
 }
-* {
+*, *:before, *:after {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    &:before {
-		box-sizing: inherit;
-	}
-	&:after {
-		box-sizing: inherit;
-	}
 }
 
-/**Desktop Query*/
-@media only screen and (min-width: 768px) {
+#staticPage {
+    margin-left:auto;
+    margin-right:auto;
+    width:960px;
+}
 
-}
-/**Tablet Query*/
-@media only screen and (min-width: 481px) and (max-width:768px) {
-	
-}
-/*Mobile Query*/
-@media only screen and (max-width:480px) {
-	
+/* Responsive Styles*/
+@media screen and (max-width: 768px) {
+
 }

@@ -1,0 +1,99 @@
+@head_txt1: #3783ff;
+@bg_blk: #000000;
+@header_txt:#2200fd;
+@color_3: #b5ff3e;
+
+header {
+    background:@bg_blk; 
+    border-bottom: @header_txt 0.2rem solid;
+    color: @head_txt1;
+    width:100%;
+    padding-top: 1.5rem;
+    min-height: 7rem;
+    .grid_73 {
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+        vertical-align: middle;
+        .grid_19 {
+            width:100%;
+        }
+        #branding {
+            float: left;
+            #headBoard {
+                margin: 0;
+                font-size: 3.6rem;
+                #pgLogo {
+                    overflow: hidden;
+                    display: inline-block;
+                    padding: 0;
+                    #homeLogo {
+                        // background-image: url("path/to/img");
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        float:left;
+                    }
+                }
+                .highlight {
+                    color: @header_txt;
+                    font-weight: bold;
+                }
+            }
+        }
+        #userNav {
+            margin-top: 1rem;
+            padding-right: 1rem;
+            #userBar {
+                margin: 0;
+                padding: 0;
+                text-align: center;
+                float: right;
+                .userAct {
+                    display: inline;
+                    padding-left: 2rem;
+                    font-size: 2rem;
+                    .userLink {
+                        color: @head_txt1;
+                        text-decoration: none;
+                        text-transform: capitalize;
+                        &:hover {
+                            color: @color_3;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+/* Responsive Styles*/
+@media screen and (max-width: 768px) {
+    #branding {
+        float: none;
+        text-align: center;
+        width: 100%;
+        #pgLogo {
+            width: 100%;
+            text-align: center;
+            #homeLogo {
+                float:none!important;
+            }
+        }
+    }
+    #userNav {
+        float:none;
+        text-align:center;
+        width:100%;
+        margin:0 0 1rem 0;
+        padding-right:0!important;
+        #userBar {
+            list-style-type:none;
+            float:none!important;
+            #userAct {
+                float:none;
+                text-align:center;
+                width:100%;
+            }
+        }
+    }
+}
