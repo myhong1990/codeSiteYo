@@ -90,19 +90,13 @@ gulp.task('views', function (cb) {
   );
 });
 
-// create task to reload browser whenever an .pug files gets changed
-// gulp.task('html', function () {
-//     return gulp.src('./src/main/dev/views/*.pug')
-//     .pipe(livereload());
-// });
-
 // task to concatenate and minify all javascript files
 // run scripts task after lint task is done.
 gulp.task('scripts',['lint'], function (cb) {
     pump([
         gulp.src('./src/main/dev/scripts/**/*.js'), // take all file with extension .js
         sourcemaps.init(),
-        autoprefixer(),
+        // autoprefixer(),
         // concat('index.js'), // concatenate sources .js file into main.js
         rename({suffix: '.min'}), // rename file to index.min.js
         uglify_es(), //minify the file content

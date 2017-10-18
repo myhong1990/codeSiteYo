@@ -1,32 +1,36 @@
 nav#menu
   .grid_73.grid_19_m
-    #nav
-      label#toggle-menu(for='tm')
-        | Navigation 
-        span.drop-icon ▾
-      input#tm(type='checkbox')
-      ul
+    #mainNav
+      li.toggle-nav(href='#')
+        span.toggle-menu-bar
+        span.toggle-menu-bar
+        span.toggle-menu-bar
+      ul.lv1Menu
+        li.lv1Item.homeItem
+          a.homeLnk(href='#')
+            span.fa.fa-home.fa-2x
         li
-          a(href='#') Home
-        li
-          a(href='#') About Us
-        li
-          a(href='#') Our Portfolio
-        li
-          a(href='#') One Dropdown
+          a(href='#') Tutorials
           ul
             li
-              a(href='#') Level 2.1
+              a(href='#') coding
             li
-              a(href='#') Level 2.2
+              a(href='#') hardware
             li
-              a(href='#') Level 2.3
+              a(href='#') network
             li
-              a(href='#') Level 2.4
-            li
-              a(href='#') Level 2.5
+              a(href='#') shellScript
         li
-          a(href='#') Three Levels
+          a(href='#') Data Structure
+          ul
+            li
+              a(href='#') Sorting ALgorithms
+            li
+              a(href='#') Searching ALgorithms
+            li
+              a(href='#') Collections
+        li
+          a(href='#') Projects
           ul
             li
               a(href='#') Level 2.1
@@ -63,7 +67,7 @@ nav#menu
           li
             a(href='/articles/add') Add Article
     #searchWrap
-      #searchBar
-        input.searchBox(type='text', placeholder='What are you looking for?')
+      form.search-form
+        input(type='text', placeholder='What are you looking for?')
         button.searchButton(type='submit')
           i.fa.fa-search
