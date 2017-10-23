@@ -31,6 +31,7 @@ router.post('/register', function(req, res){
   let errors = req.getValidationResult();
 
   if(errors){
+    console.log(errors);
     res.render('ui/users/register', {
       errors:errors
     });

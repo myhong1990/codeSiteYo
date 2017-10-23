@@ -5,13 +5,13 @@ nav#menu
         span.toggle-menu-bar
         span.toggle-menu-bar
         span.toggle-menu-bar
-      ul.lv1Menu
-        li.lv1Item.homeItem
+      ul.menuLv1
+        li.itemLv1.homeItem
           a.homeLnk(href='#')
             span.fa.fa-home.fa-2x
-        li
+        li.itemLv1
           a(href='#') Tutorials
-          ul
+          ul.menuLv2
             li
               a(href='#') coding
             li
@@ -20,25 +20,25 @@ nav#menu
               a(href='#') network
             li
               a(href='#') shellScript
-        li
+        li.itemLv1
           a(href='#') Data Structure
-          ul
+          ul.menuLv2
             li
               a(href='#') Sorting ALgorithms
             li
               a(href='#') Searching ALgorithms
             li
               a(href='#') Collections
-        li
+        li.itemLv1
           a(href='#') Projects
-          ul
+          ul.menuLv2
             li
               a(href='#') Level 2.1
             li
               a(href='#') Level 2.2
             li
               a(href='#') Level 2.3
-              ul
+              ul.menuLv3
                 li
                   a(href='#') Level 2.3.1
                 li
@@ -57,14 +57,14 @@ nav#menu
               a(href='#') Level 2.4
             li
               a(href='#') Level 2.5
-        li
+        li.itemLv1
           a(href='#') Services
-        li
+        li.itemLv1
           a(href='#') Contact Us
         if user
-          li
+          li.itemLv1
             a(href='/articles/add') Add Article
-          li
+          li.itemLv1
             a(href='/articles/add') Add Article
     #searchWrap
       form.search-form

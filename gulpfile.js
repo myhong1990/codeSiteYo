@@ -73,8 +73,8 @@ gulp.task('lint', function (cb) {
   );
 });
 
-gulp.task('clean', function () {
-    del([paths.distViews,paths.distStyles,paths.distScripts]);
+gulp.task('clean', function (cb) {
+    del.sync([paths.distViews,paths.distStyles,paths.distScripts], cb);
 });
 
 // interpret pug into html

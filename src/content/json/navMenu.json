@@ -1,0 +1,73 @@
+{
+    "navLv1": [
+        {
+            "name": "Tutorials",
+            "srcURL": "",
+            "navLv2": [
+                {
+                    "name": "Software",
+                    "srcURL": "",
+                    "navLv3": [
+                    ]
+                },
+                {
+                    "name": "Hardware",
+                    "srcURL": "",
+                    "navLv3": [
+                    ]
+                },
+                {
+                    "name": "Network",
+                    "srcURL": "",
+                    "navLv3": [
+                    ]
+                },
+                {
+                    "name": "",
+                    "srcURL": "",
+                    "navLv3": [
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Data Structure",
+            "srcURL": "",
+            "navLv2": [
+                {
+                    "name": "Sorting Algorithms",
+                    "srcURL": "",
+                    "navLv3": [
+                    ]
+                },
+                {
+                    "name": "Searching Algorithms",
+                    "srcURL": "",
+                    "navLv3": [
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Projects",
+            "srcURL": "",
+            "navLv2": [
+                
+            ]
+        },
+        {
+            "name": "Services",
+            "srcURL": "",
+            "navLv2": [
+                
+            ]
+        },
+        {
+            "name": "Contact Us",
+            "srcURL": "",
+            "navLv2": [
+                
+            ]
+        }
+    ]
+}

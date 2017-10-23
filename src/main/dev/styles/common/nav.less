@@ -18,12 +18,7 @@
 		padding: 0;
 		#mainNav {
 			float: left;
-			font: bold 1.2rem Arial, Helvetica, Sans-serif;
-			// border: 1px solid #121314;
-			// border-top: 1px solid #2b2e30;
-			// -webkit-border-radius: 5px;
-			// -moz-border-radius: 5px;
-			// border-radius: 5px;
+			font: bold 1.6rem Arial, Helvetica, Sans-serif;
 			overflow: hidden;
 			.toggle-nav {
 				padding-top: 5px;
@@ -231,8 +226,11 @@
 			width: 100%;
 			padding: 0;
 		}
-		ul.lv1Menu {
+		ul.menuLv1 {
 			display: none!important;
+			li ul.menuLv2 {
+				display: none!important;
+			}
 		}
 		ul {
 			width: 100%;
@@ -287,9 +285,13 @@
 			display: block!important;
 		}
 	}
-	.toggle-nav.lv1Menu {
+	.toggle-nav.menuLv1 {
 		text-decoration: none;
 		color: @color_2;
+		li ul.menuLv2 {
+			text-decoration: none;
+			color: @color_2;
+		}
 	}
 	.search-form {
 		width: 70%!important;

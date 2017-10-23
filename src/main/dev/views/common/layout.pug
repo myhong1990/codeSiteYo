@@ -19,7 +19,7 @@ html
     include header.pug
     //- TODO need to work on this
     include navbar.pug
-    main.container
+    main.mainContainer
       if errors
         each error, i in errors
           div(class="alert alert-danger") #{error.msg}
@@ -28,7 +28,18 @@ html
       hr
     //- include footer of the page
     include footer.pug
-    script(src='/bower_components/jquery/dist/jquery.js')
-    script(src='/main/dist/scripts/controllers/common/navCtrl.min.js')  
-    //- script(src='/bower_components/angular/angular.min.js') 
+
+
+    //- third party script files
+    script(type="text/javascript" src='/bower_components/jquery/dist/jquery.js')
+    script(type="text/javascript" src='/bower_components/angular/angular.min.js') 
     //- script(src='/bower_components/bootstrap/dist/js/bootstrap.min.js')
+    
+    //-custom scripts files
+    script(src='/main/dist/scripts/controllers/common/mainNavCtrl.min.js')  
+    script(src='/main/dist/scripts/services/common/mainNavSrv.min.js')
+    script(src='/main/dist/scripts/constants/common/commonConstants.min.js')
+    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js")
+
+    
+    

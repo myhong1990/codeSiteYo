@@ -9,6 +9,12 @@ const passport = require('passport');
 const config = require('./config/database');
 const consolidate = require('consolidate');
 
+// Route Files
+let articles = require('./routes/articles');
+let Article = require('./models/article');
+let users = require('./routes/users');
+
+
 // configure database connection
 mongoose.connect(config.database);
 let db = mongoose.connection;
@@ -28,7 +34,9 @@ const app = express();
 // Define the port to run on
 app.set('port', 3000);
 // Bring in Models
-let Article = require('./models/article');
+
+app.use('/articles', articles);
+app.use('/users', users);
 
 // Load View Engine with pug
 // app.set('views', path.join(__dirname, 'src/main/dev/views'));
@@ -122,13 +130,23 @@ app.get('/', function(req, res){
 //   res.render('errors/404'); 
 // });
 
-// Route Files
-let articles = require('./routes/articles');
-let users = require('./routes/users');
-let softwares = require('./routes/software');
-app.use('/articles', articles);
-app.use('/users', users);
-app.use('/software', softwares);
+// In Express a 404 is not the result of an error but rather the app running out of options.
+app.use(function(req, res, next) {  
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+// Error handlers
+if (app.get('env') === 'development') {  
+  app.use(function(err, req, res, next) {
+      res.status(err.status || 500);
+      res.render('error', {
+          message: err.message,
+          error: err
+      });
+  });
+}
 
 // Listen for requests
 var server = app.listen(app.get('port'), function() {
