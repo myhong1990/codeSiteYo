@@ -27,8 +27,6 @@ db.on('error', function(err){
   console.log(err);
 });
 
-
-
 // Init App
 const app = express();
 // Define the port to run on
@@ -131,22 +129,22 @@ app.get('/', function(req, res){
 // });
 
 // In Express a 404 is not the result of an error but rather the app running out of options.
-app.use(function(req, res, next) {  
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
+// app.use(function(req, res, next) {  
+//   var err = new Error('Not Found');
+//   err.status = 404;
+//   next(err);
+// });
 
 // Error handlers
-if (app.get('env') === 'development') {  
-  app.use(function(err, req, res, next) {
-      res.status(err.status || 500);
-      res.render('error', {
-          message: err.message,
-          error: err
-      });
-  });
-}
+// if (app.get('env') === 'development') {  
+//   app.use(function(err, req, res, next) {
+//       res.status(err.status || 500);
+//       res.render('error', {
+//           message: err.message,
+//           error: err
+//       });
+//   });
+// }
 
 // Listen for requests
 var server = app.listen(app.get('port'), function() {

@@ -14,11 +14,12 @@ html
       //- link(rel='stylesheet', href='/main/dist/styles/common/footer.min.css')
       link(rel='stylesheet', href='/main/dist/styles/common/master.min.css')
       
-  body
+  body(ng-app="mainCommonApp")
     //-include header for the page
     include header.pug
     //- TODO need to work on this
-    include navbar.pug
+    //- include navbar.pug
+    main-nav(data-qa='main-navigation')
     main.mainContainer
       if errors
         each error, i in errors
@@ -38,6 +39,7 @@ html
     //-custom scripts files
     script(src='/main/dist/scripts/controllers/common/mainNavCtrl.min.js')  
     script(src='/main/dist/scripts/services/common/mainNavSrv.min.js')
+    script(src='/main/dist/scripts/directives/common/mainNav.min.js')
     script(src='/main/dist/scripts/constants/common/commonConstants.min.js')
     script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js")
 

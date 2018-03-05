@@ -1,5 +1,7 @@
 // include gulp
 var gulp = require('gulp'),
+watch = require('gulp-watch'),
+cleanDest = require('gulp-clean-dest'),
 // use to start server
 autoprefixer = require('gulp-autoprefixer'),
 nodemon = require('gulp-nodemon'),
@@ -38,7 +40,7 @@ var paths = {
     srcCommonViews: 'src/main/dev/views/common/*.pug',
     srcViews: 'src/main/dev/**/*.pug',
     srcStyles: 'src/main/dev/**/*.less',
-    srcScripts: 'src/main/dev/**/*.js',
+    srcScripts: 'src/main/dev/scripts/*.js',
     tmp: 'tmp',
     tmpViews: 'tmp/index.html',
     tmpStyles: 'tmp/**/*.css',
@@ -46,7 +48,7 @@ var paths = {
     dist: 'dist',
     distViews: 'src/main/dist/views/*.html',
     distStyles: 'src/main/dist/styles/*.css',
-    distScripts: 'src/main/dist/scripts/*.js'
+    distScripts: 'src/main/dist/scripts/'
 };
 
 var URL = {
@@ -80,7 +82,8 @@ gulp.task('clean', function (cb) {
 // interpret pug into html
 gulp.task('views', function (cb) {
     pump([
-        gulp.src(['./src/main/dev/views/**/*.pug', '!./src/main/dev/views/common/*.pug']),
+        // gulp.src(['./src/main/dev/views/**/*.pug', '!./src/main/dev/views/common/*.pug']),
+        gulp.src('./src/main/dev/views/**/*.pug'),
         pug({pretty:true, basedir:__dirname + '/src/main/'}),
         htmlmin({collapseWhitespace: true}),
         gulp.dest('./src/main/dist/views'),
@@ -95,6 +98,7 @@ gulp.task('views', function (cb) {
 gulp.task('scripts',['lint'], function (cb) {
     pump([
         gulp.src('./src/main/dev/scripts/**/*.js'), // take all file with extension .js
+        cleanDest(paths.distScripts, {extension: '.js'}),
         sourcemaps.init(),
         // autoprefixer(),
         // concat('index.js'), // concatenate sources .js file into main.js

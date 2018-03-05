@@ -8,6 +8,7 @@
             // method to load the main navigation bar content
             function getMainNavigationContent() {
                 mainNavSrv.getNavigationContents().then(function (result) {
+                    
                 });
             } 
     }]);
