@@ -11,10 +11,6 @@
                 });   
             };
 
-
-
-
-
             services.samplemethods = function () {
                 var storageKey = exCommonConstants.selectedLineStorageKey;
 

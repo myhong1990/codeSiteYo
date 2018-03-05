@@ -1,6 +1,6 @@
 # Article Knowledgebase Application
 
-This is software tutorial app used in the "Node.js & Express From Scratch".
+This app used in the "Node.js, Angularjs & Express From Scratch".
 
 ## Technologies
 * Node.js
