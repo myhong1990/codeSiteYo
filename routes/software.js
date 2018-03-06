@@ -7,7 +7,7 @@ const passport = require('passport');
 let User = require('../models/user');
 
 /**
- * Load the Register Form
+ * Load the java page
  */
 router.get('/backend/java', function(req, res){
   res.render('ui/software/backend/java');
